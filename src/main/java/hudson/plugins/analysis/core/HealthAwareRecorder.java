@@ -34,7 +34,6 @@ import hudson.remoting.VirtualChannel;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Builder;
 import hudson.tasks.Recorder;
-import hudson.tasks.Ant;
 import hudson.tasks.Maven;
 
 /**
@@ -606,7 +605,7 @@ public abstract class HealthAwareRecorder extends Recorder implements HealthDesc
      *         <code>false</code> otherwise
      */
     protected boolean isAntBuild(final AbstractBuild<?, ?> build) {
-        if (build.getProject() instanceof Project) {
+        /*if (build.getProject() instanceof Project) {
             Project<?, ?> project = (Project<?, ?>)build.getProject();
             for (Builder builder : project.getBuilders()) {
                 if (builder instanceof Ant) {
@@ -614,7 +613,8 @@ public abstract class HealthAwareRecorder extends Recorder implements HealthDesc
                 }
             }
         }
-        return false;
+        return false;*/
+        return IsAntOptional.isAntBuild(build);
     }
 
     /** {@inheritDoc} */
